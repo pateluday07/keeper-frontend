@@ -1,0 +1,17 @@
+.container {
+    margin-top: 50px;
+    /* background-color: antiquewhite; */
+    padding: 0px;
+}
+
+.card {
+    width: 23%;
+    min-height: 25%;
+    max-height: 25%;
+    margin: 7px;
+    overflow: hidden;
+}
+
+.card-text {
+    word-wrap: break-word;
+}
