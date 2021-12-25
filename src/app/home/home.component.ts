@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Note } from '../model/note.model';
+import { NoteService } from '../service/note.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  notes: Note[] = [];
+  errorMsg!: String;
+
+  constructor(private noteService: NoteService) { }
 
   ngOnInit(): void {
+    this.getAll();
+  }
+
+  getAll() {
+    this.noteService
+      .getAll().subscribe(
+        notes => this.notes = notes,
+        error => this.errorMsg = error);
   }
 
 }

@@ -5,6 +5,7 @@
 
 .card {
     max-width: 23%;
+    width: 23%;
     margin: 10px;
     height: min-content;
     min-height: min-content;
