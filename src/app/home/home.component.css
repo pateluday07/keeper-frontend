@@ -5,7 +5,9 @@
 
 .card {
     max-width: 23%;
-    margin: 7px;
+    margin: 10px;
+    height: min-content;
+    min-height: min-content;
 }
 
 .card-text {
