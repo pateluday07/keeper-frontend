@@ -1,9 +1,37 @@
-.container {
+#takeANoteContainer {
+    margin-top: 35px;
+}
+
+#takeANoteInput {
+    width: 50%;
+}
+
+#takeANoteFormDiv {
+    width: 50%;
+}
+
+#takeANoteCard {
+    width: 100%;
+}
+
+#takeANoteCardHeader {
+    padding: 0px;
+}
+
+#takeANoteCardBody {
+    padding: 0px;
+}
+
+textarea{
+    overflow-y: hidden;
+}
+
+#noteContainer {
     margin-top: 50px;
     padding: 0px;
 }
 
-.card {
+#noteToDisplay {
     max-width: 23%;
     width: 23%;
     margin: 10px;
@@ -11,7 +39,7 @@
     min-height: min-content;
 }
 
-.card-text {
+#noteTextToDisplay {
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
