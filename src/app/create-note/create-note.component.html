@@ -1,11 +1,22 @@
 <div class="container">
-    <form> 
+    <form [formGroup]="noteForm" (ngSubmit)="save()">
         <div class="form-group shadow regular">
-            <input type="text" class="form-control" placeholder="Title" autofocus>
+            <input type="text" class="form-control" formControlName="title" placeholder="Title" autofocus>
+            <div
+                *ngIf="(noteForm.controls.title.invalid && (noteForm.controls.title.dirty || noteForm.controls.title.touched))">
+                <div *ngIf="noteForm.controls.title.errors?.['required']" class="alert alert-danger" role="alert">
+                    Title is required
+                </div>
+                <div *ngIf="noteForm.controls.title.errors?.['maxlength']" class="alert alert-danger" role="alert">
+                    Title is too big, Title length must be less than 256 characters
+                </div>
+            </div>
         </div>
         <div class="form-group shadow regular">
-            <textarea class="form-control" rows="10" placeholder="Take a note..."></textarea>
+            <textarea class="form-control" rows="10" formControlName="description"
+                placeholder="Take a note..."></textarea>
         </div>
-        <button id="saveBtn" type="submit" class="btn btn-primary shadow regular">Save</button>
+        <button id="saveBtn" [disabled]="noteForm.invalid" type="submit"
+            class="btn btn-primary shadow regular">Save</button>
     </form>
 </div>

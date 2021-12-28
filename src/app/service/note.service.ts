@@ -11,11 +11,15 @@ import { Note } from '../model/note.model';
 export class NoteService {
 
   baseUrl = environment.baseUrl;
+  private url = this.baseUrl + ApiPaths.Notes;
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Note[]> {
-    let url = this.baseUrl + ApiPaths.Notes;
-    return this.http.get<Note[]>(url);
+    return this.http.get<Note[]>(this.url);
+  }
+
+  save(note: any): Observable<Note> {
+    return <Observable<Note>>this.http.post(this.url, note);
   }
 }
