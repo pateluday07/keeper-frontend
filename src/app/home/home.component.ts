@@ -32,11 +32,9 @@ export class HomeComponent implements OnInit {
 
   reSize(event: any) {
     let currentHeight = event.target.scrollHeight;
-    console.log(currentHeight);
     if (currentHeight > 108 && currentHeight < 600) {
       event.target.style.height = '0';
       event.target.style.height = event.target.scrollHeight + 'px';
-      console.log(event.target.scrollHeight);
     }
     if (currentHeight > 600) {
       event.target.style.overflowY = "scroll";
