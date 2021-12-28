@@ -31,10 +31,9 @@ export class CreateNoteComponent implements OnInit {
 
     this.noteService.save(this.noteForm.value)
       .subscribe(
-        (success) => {
+        () => {
           this.noteForm.reset();
           this.isNoteSaved = true;
-
           setTimeout(() => {
             this.isNoteSaved = false;
           }, 4000);
