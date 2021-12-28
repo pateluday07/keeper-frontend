@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Note } from '../model/note.model';
 import { NoteService } from '../service/note.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,9 @@ export class HomeComponent implements OnInit {
 
   notes: Note[] = [];
   errorMsg!: String;
-  showTakeANoteForm = false;
 
-  constructor(private noteService: NoteService) { }
+  constructor(private noteService: NoteService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -27,18 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   takeANote() {
-    this.showTakeANoteForm = true;
-  }
-
-  reSize(event: any) {
-    let currentHeight = event.target.scrollHeight;
-    if (currentHeight > 108 && currentHeight < 600) {
-      event.target.style.height = '0';
-      event.target.style.height = event.target.scrollHeight + 'px';
-    }
-    if (currentHeight > 600) {
-      event.target.style.overflowY = "scroll";
-    }
+    this.router.navigate(['/create-note']);
   }
 
 }

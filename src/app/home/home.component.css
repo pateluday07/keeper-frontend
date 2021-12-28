@@ -6,26 +6,6 @@
     width: 50%;
 }
 
-#takeANoteFormDiv {
-    width: 50%;
-}
-
-#takeANoteCard {
-    width: 100%;
-}
-
-#takeANoteCardHeader {
-    padding: 0px;
-}
-
-#takeANoteCardBody {
-    padding: 0px;
-}
-
-textarea{
-    overflow-y: hidden;
-}
-
 #noteContainer {
     margin-top: 50px;
     padding: 0px;

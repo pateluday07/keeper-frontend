@@ -1,20 +1,6 @@
 <div id="takeANoteContainer" class="container d-flex justify-content-center">
-    <input *ngIf="!showTakeANoteForm" id="takeANoteInput" type="text"
-        class="form-control form-control-lg shadow rounded" placeholder="Take a note..." (click)="takeANote()"
-        autofocus>
-
-    <div id="takeANoteFormDiv" *ngIf="showTakeANoteForm">
-        <form>
-            <div id="takeANoteCard" class="card shadow round">
-                <div id="takeANoteCardHeader" class="card-header">
-                    <input type="text" class="form-control" placeholder="Title">
-                </div>
-                <div id="takeANoteCardBody" class="card-body">
-                    <textarea (keyup)="reSize($event)" rows="4" class="form-control" id="exampleFormControlTextarea1"></textarea>
-                </div>
-            </div>
-        </form>
-    </div>
+    <input id="takeANoteInput" type="text" class="form-control form-control-lg shadow rounded"
+        placeholder="Take a note..." (keyup)="takeANote()" (click)="takeANote()" autofocus>
 </div>
 
 <div id="noteContainer" class="container d-flex flex-wrap">
