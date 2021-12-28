@@ -10,6 +10,7 @@ import { NoteService } from '../service/note.service';
 export class CreateNoteComponent implements OnInit {
 
   noteForm: FormGroup;
+  isNoteSaved = false;
 
   constructor(private formBuilder: FormBuilder, private noteService: NoteService) {
     this.noteForm = this.formBuilder.group({
@@ -30,9 +31,14 @@ export class CreateNoteComponent implements OnInit {
 
     this.noteService.save(this.noteForm.value)
       .subscribe(
-        (success) => { console.log("success");
-        this.noteForm.reset();
-      },
+        (success) => {
+          this.noteForm.reset();
+          this.isNoteSaved = true;
+
+          setTimeout(() => {
+            this.isNoteSaved = false;
+          }, 4000);
+        },
         (error) => { console.log("error") }
       );
   }

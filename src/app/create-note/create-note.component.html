@@ -18,5 +18,8 @@
         </div>
         <button id="saveBtn" [disabled]="noteForm.invalid" type="submit"
             class="btn btn-primary shadow regular">Save</button>
+        <div *ngIf="isNoteSaved" class="alert alert-success" role="alert">
+            Note successfully saved!
+        </div>
     </form>
 </div>
