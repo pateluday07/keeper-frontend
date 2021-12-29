@@ -11,6 +11,8 @@ export class CreateNoteComponent implements OnInit {
 
   noteForm: FormGroup;
   isNoteSaved = false;
+  isError = false;
+  errorMessage?: String;
 
   constructor(private formBuilder: FormBuilder, private noteService: NoteService) {
     this.noteForm = this.formBuilder.group({
@@ -36,9 +38,19 @@ export class CreateNoteComponent implements OnInit {
           this.isNoteSaved = true;
           setTimeout(() => {
             this.isNoteSaved = false;
-          }, 4000);
+          }, 5000);
         },
-        (error) => { console.log("error") }
+        (error) => {
+          if (error.status == 0) {
+            this.errorMessage = "Seems like server is down at this moment, please try again after sometime!";
+          } else {
+            this.errorMessage = error.error.message;
+          }
+          this.isError = true;
+          setTimeout(() => {
+            this.isError = false;
+          }, 5000);
+        }
       );
   }
 

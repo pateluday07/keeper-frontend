@@ -21,5 +21,8 @@
         <div *ngIf="isNoteSaved" class="alert alert-success" role="alert">
             Note successfully saved!
         </div>
+        <div *ngIf="isError" class="alert alert-danger" role="alert">
+            {{errorMessage}}
+        </div>
     </form>
 </div>
