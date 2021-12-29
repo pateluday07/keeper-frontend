@@ -3,6 +3,9 @@ import { Note } from '../model/note.model';
 import { NoteService } from '../service/note.service';
 import { Router } from '@angular/router';
 
+import { RoutePath } from '../enum/route-path';
+import { Message } from '../enum/message';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,15 +27,20 @@ export class HomeComponent implements OnInit {
     this.noteService
       .getAll().subscribe(
         notes => this.notes = notes,
-        error => this.errorMsg = error);
+        error => {
+          this.errorMsg = error;
+          if (error.status == 0) {
+            //ToDo dispaly error message in tost alert
+            Message.ServerDown;
+          }
+        });
   }
 
-  takeANote() {
-    this.router.navigate(['/create-note']);
+  routeToCreateNote() {
+    this.router.navigate([RoutePath.CreateNote]);
   }
 
-  routeToUpdateNote(id: string) {
-    console.log("clicked: "+id);
-    this.router.navigate(['/update-note/' + id]);
+  routeToUpdateNote(id: number) {
+    this.router.navigate([RoutePath.UpdateNote + id]);
   }
 }

@@ -5,10 +5,10 @@
             <div
                 *ngIf="(noteForm.controls.title.invalid && (noteForm.controls.title.dirty || noteForm.controls.title.touched))">
                 <div *ngIf="noteForm.controls.title.errors?.['required']" class="alert alert-danger" role="alert">
-                    Title is required
+                    {{noteTitleRequired}}
                 </div>
                 <div *ngIf="noteForm.controls.title.errors?.['maxlength']" class="alert alert-danger" role="alert">
-                    Title is too big, Title length must be less than 256 characters
+                    {{noteTitleMaxLength}}
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
         <button id="saveBtn" [disabled]="noteForm.invalid || isSaveBtnDisable" type="submit"
             class="btn btn-primary shadow regular">Save</button>
         <div *ngIf="isNoteSaved" class="alert alert-success" role="alert">
-            Note successfully saved!
+            {{noteSaved}}
         </div>
         <div *ngIf="isError" class="alert alert-danger" role="alert">
             {{errorMessage}}

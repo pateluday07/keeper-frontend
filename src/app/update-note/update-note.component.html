@@ -1,1 +1,28 @@
-<p>update-note works!</p>
+<div class="container">
+    <form [formGroup]="noteForm" (ngSubmit)="update()">
+        <div class="form-group shadow regular">
+            <input type="text" class="form-control" formControlName="title" placeholder="Title" autofocus>
+            <div
+                *ngIf="(noteForm.controls.title.invalid && (noteForm.controls.title.dirty || noteForm.controls.title.touched))">
+                <div *ngIf="noteForm.controls.title.errors?.['required']" class="alert alert-danger" role="alert">
+                    {{noteTitleRequired}}
+                </div>
+                <div *ngIf="noteForm.controls.title.errors?.['maxlength']" class="alert alert-danger" role="alert">
+                    {{noteTitleMaxLength}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group shadow regular">
+            <textarea class="form-control" rows="10" formControlName="description"
+                placeholder="Take a note..."></textarea>
+        </div>
+        <button id="updateBtn" [disabled]="noteForm.invalid || isUpdateBtnDisable" type="submit"
+            class="btn btn-primary shadow regular">Update</button>
+        <div *ngIf="isNoteUpdated" class="alert alert-success" role="alert">
+            {{noteUpdated}}
+        </div>
+        <div *ngIf="isError" class="alert alert-danger" role="alert">
+            {{errorMessage}}
+        </div>
+    </form>
+</div>

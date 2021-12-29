@@ -22,4 +22,8 @@ export class NoteService {
   save(note: any): Observable<Note> {
     return <Observable<Note>>this.http.post(this.url, note);
   }
+
+  getById(id: number): Observable<Note> {
+    return <Observable<Note>>this.http.get(this.url + id);
+  }
 }

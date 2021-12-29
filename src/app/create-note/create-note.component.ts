@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Message } from '../enum/message';
 import { NoteService } from '../service/note.service';
 
 @Component({
@@ -8,6 +9,10 @@ import { NoteService } from '../service/note.service';
   styleUrls: ['./create-note.component.css']
 })
 export class CreateNoteComponent implements OnInit {
+
+  readonly noteTitleRequired = Message.NoteTitleRequired;
+  readonly noteTitleMaxLength = Message.NoteTitleMaxLength;
+  readonly noteSaved = Message.NoteSaved;
 
   noteForm: FormGroup;
   isNoteSaved = false;
@@ -45,7 +50,7 @@ export class CreateNoteComponent implements OnInit {
         },
         (error) => {
           if (error.status == 0) {
-            this.errorMessage = "Seems like server is down at this moment, please try again after sometime!";
+            this.errorMessage = Message.ServerDown;
           } else {
             this.errorMessage = error.error.message;
           }
