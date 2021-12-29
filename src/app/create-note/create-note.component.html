@@ -16,7 +16,7 @@
             <textarea class="form-control" rows="10" formControlName="description"
                 placeholder="Take a note..."></textarea>
         </div>
-        <button id="saveBtn" [disabled]="noteForm.invalid" type="submit"
+        <button id="saveBtn" [disabled]="noteForm.invalid || isSaveBtnDisable" type="submit"
             class="btn btn-primary shadow regular">Save</button>
         <div *ngIf="isNoteSaved" class="alert alert-success" role="alert">
             Note successfully saved!

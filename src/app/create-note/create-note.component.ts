@@ -12,6 +12,7 @@ export class CreateNoteComponent implements OnInit {
   noteForm: FormGroup;
   isNoteSaved = false;
   isError = false;
+  isSaveBtnDisable = false;
   errorMessage?: String;
 
   constructor(private formBuilder: FormBuilder, private noteService: NoteService) {
@@ -31,6 +32,7 @@ export class CreateNoteComponent implements OnInit {
       return;
     }
 
+    this.isSaveBtnDisable = true;
     this.noteService.save(this.noteForm.value)
       .subscribe(
         () => {
@@ -38,6 +40,7 @@ export class CreateNoteComponent implements OnInit {
           this.isNoteSaved = true;
           setTimeout(() => {
             this.isNoteSaved = false;
+            this.isSaveBtnDisable = false;
           }, 5000);
         },
         (error) => {
@@ -49,6 +52,7 @@ export class CreateNoteComponent implements OnInit {
           this.isError = true;
           setTimeout(() => {
             this.isError = false;
+            this.isSaveBtnDisable = false;
           }, 5000);
         }
       );
