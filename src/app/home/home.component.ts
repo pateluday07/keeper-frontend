@@ -31,4 +31,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/create-note']);
   }
 
+  routeToUpdateNote(id: string) {
+    console.log("clicked: "+id);
+    this.router.navigate(['/update-note/' + id]);
+  }
 }

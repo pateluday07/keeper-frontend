@@ -19,6 +19,12 @@
     min-height: min-content;
 }
 
+#noteToDisplay:hover, #noteToDisplay:focus, #noteToDisplay:active {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+    cursor: pointer;
+}
+
 #noteTextToDisplay {
     display: -webkit-box;
     -webkit-line-clamp: 4;

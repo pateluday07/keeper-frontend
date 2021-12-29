@@ -8,12 +8,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateNoteComponent } from './update-note/update-note.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CreateNoteComponent
+    CreateNoteComponent,
+    UpdateNoteComponent
   ],
   imports: [
     BrowserModule,
