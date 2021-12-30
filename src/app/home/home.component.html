@@ -7,7 +7,7 @@
     <div id="noteToDisplay" class="card shadow mb-4 bg-white rounded"
         *ngFor="let note of notes">
         <div class="card-header d-flex flex-row">
-            <div id="cardTitle" (click)="routeToUpdateNote(note.id)">{{note.title}}</div>
+            <div id="noteTitle" (click)="routeToUpdateNote(note.id)">{{note.title}}</div>
             <div id="deleteIcon" (click)="delete(note.id)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash"
                     viewBox="0 0 16 16">
@@ -18,7 +18,7 @@
                 </svg>
             </div>
         </div>
-        <div class="card-body" (click)="routeToUpdateNote(note.id)">
+        <div id="noteBody" class="card-body" (click)="routeToUpdateNote(note.id)">
             <p id="noteTextToDisplay" class="card-text">{{note.description}}</p>
         </div>
     </div>

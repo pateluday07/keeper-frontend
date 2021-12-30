@@ -22,7 +22,6 @@
 #noteToDisplay:hover, #noteToDisplay:focus, #noteToDisplay:active {
     -webkit-transform: translateY(-8px);
     transform: translateY(-8px);
-    cursor: pointer;
 }
 
 #noteTextToDisplay {
@@ -32,7 +31,7 @@
     overflow: hidden;
 }
 
-#cardTitle {
+#noteTitle {
     width: 190px;
     white-space: nowrap;
     overflow: hidden;
@@ -40,6 +39,11 @@
     margin-right: 10px;
 }
 
-#deleteIcon:hover{
-    color: 	#ff0000;
+#deleteIcon:hover {
+    color: #ff0000;
+    cursor: pointer;
+}
+
+#noteTitle:hover, #noteBody:hover {
+    cursor: pointer;
 }
