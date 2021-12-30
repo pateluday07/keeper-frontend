@@ -8,5 +8,6 @@ export enum Message {
 
     //success message
     NoteSaved = "Note successfully saved!",
-    NoteUpdated = "Note successfully updated!"
+    NoteUpdated = "Note successfully updated!",
+    NoteDeleted = "Note successfully deleted!"
 }

@@ -30,4 +30,8 @@ export class NoteService {
   getById(id: number) {
     return this.http.get<Note>(this.url + id);
   }
+
+  deleteById(id: number) {
+    return this.http.delete(this.url + id)
+  }
 }

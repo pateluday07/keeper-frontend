@@ -15,7 +15,6 @@ import { ToastService } from '../toast/toast-service';
 export class HomeComponent implements OnInit {
 
   notes: Note[] = [];
-  errorMsg!: String;
 
   constructor(private noteService: NoteService, private router: Router, private toastService: ToastService) { }
 
@@ -28,7 +27,6 @@ export class HomeComponent implements OnInit {
       .getAll().subscribe(
         notes => this.notes = notes,
         error => {
-          this.errorMsg = error;
           if (error.status == 0) {
             this.toastService.showErrorToast(Message.ServerDown);
           }
@@ -41,5 +39,22 @@ export class HomeComponent implements OnInit {
 
   routeToUpdateNote(id: number) {
     this.router.navigate([RoutePath.UpdateNote + id]);
+  }
+
+  delete(id: number) {
+    this.noteService
+      .deleteById(id).subscribe(
+        () => {
+          this.getAll();
+          this.toastService.showSuccessToast(Message.NoteDeleted);
+        },
+        error => {
+          if (error.status == 0) {
+            this.toastService.showErrorToast(Message.ServerDown);
+          } else {
+            this.toastService.showErrorToast(error.error.message);
+          }
+        }
+      )
   }
 }
