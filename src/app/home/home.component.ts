@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { RoutePath } from '../enum/route-path';
 import { Message } from '../enum/message';
+import { ToastService } from '../toast/toast-service';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +17,7 @@ export class HomeComponent implements OnInit {
   notes: Note[] = [];
   errorMsg!: String;
 
-  constructor(private noteService: NoteService,
-    private router: Router) { }
+  constructor(private noteService: NoteService, private router: Router, private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -30,8 +30,7 @@ export class HomeComponent implements OnInit {
         error => {
           this.errorMsg = error;
           if (error.status == 0) {
-            //ToDo dispaly error message in tost alert
-            Message.ServerDown;
+            this.toastService.showErrorToast(Message.ServerDown);
           }
         });
   }
