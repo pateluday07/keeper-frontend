@@ -18,11 +18,6 @@
         </div>
         <button id="saveBtn" [disabled]="noteForm.invalid || isSaveBtnDisable" type="submit"
             class="btn btn-primary shadow regular">Save</button>
-        <div *ngIf="isNoteSaved" class="alert alert-success" role="alert">
-            {{noteSaved}}
-        </div>
-        <div *ngIf="isError" class="alert alert-danger" role="alert">
-            {{errorMessage}}
-        </div>
     </form>
+    <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
 </div>

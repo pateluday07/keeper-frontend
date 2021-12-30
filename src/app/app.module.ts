@@ -9,13 +9,15 @@ import { HomeComponent } from './home/home.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateNoteComponent } from './update-note/update-note.component';
+import { ToastsContainer } from './toast/toast-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CreateNoteComponent,
-    UpdateNoteComponent
+    UpdateNoteComponent,
+    ToastsContainer
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from '../enum/message';
 import { NoteService } from '../service/note.service';
+import { ToastService } from '../toast/toast-service';
 
 @Component({
   selector: 'app-create-note',
@@ -12,15 +13,11 @@ export class CreateNoteComponent implements OnInit {
 
   readonly noteTitleRequired = Message.NoteTitleRequired;
   readonly noteTitleMaxLength = Message.NoteTitleMaxLength;
-  readonly noteSaved = Message.NoteSaved;
 
   noteForm: FormGroup;
-  isNoteSaved = false;
-  isError = false;
   isSaveBtnDisable = false;
-  errorMessage?: String;
 
-  constructor(private formBuilder: FormBuilder, private noteService: NoteService) {
+  constructor(private formBuilder: FormBuilder, private noteService: NoteService, private toastService: ToastService) {
     this.noteForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.maxLength(255)]],
       description: ['']
@@ -42,23 +39,16 @@ export class CreateNoteComponent implements OnInit {
       .subscribe(
         () => {
           this.noteForm.reset();
-          this.isNoteSaved = true;
-          setTimeout(() => {
-            this.isNoteSaved = false;
-            this.isSaveBtnDisable = false;
-          }, 5000);
+          this.toastService.showSuccessToast(Message.NoteSaved);
+          this.isSaveBtnDisable = false;
         },
-        (error) => {
+        error => {
           if (error.status == 0) {
-            this.errorMessage = Message.ServerDown;
+            this.toastService.showErrorToast(Message.ServerDown);
           } else {
-            this.errorMessage = error.error.message;
+            this.toastService.showErrorToast(error.error.message);
           }
-          this.isError = true;
-          setTimeout(() => {
-            this.isError = false;
-            this.isSaveBtnDisable = false;
-          }, 5000);
+          this.isSaveBtnDisable = false;
         }
       );
   }
