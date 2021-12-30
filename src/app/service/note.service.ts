@@ -15,12 +15,17 @@ export class NoteService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Note[]> {
-    return this.http.get<Note[]>(this.url);
-  }
-
   save(note: any): Observable<Note> {
     return <Observable<Note>>this.http.post(this.url, note);
+  }
+
+  update(note: any): Observable<Note> {
+    console.log("inside service update")
+    return <Observable<Note>>this.http.put(this.url, note);
+  }
+
+  getAll(): Observable<Note[]> {
+    return this.http.get<Note[]>(this.url);
   }
 
   getById(id: number): Observable<Note> {

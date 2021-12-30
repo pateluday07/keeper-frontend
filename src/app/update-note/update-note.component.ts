@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Message } from '../enum/message';
 import { RoutePath } from '../enum/route-path';
 import { NoteService } from '../service/note.service';
+import { ToastService } from '../toast/toast-service';
 
 @Component({
   selector: 'app-update-note',
@@ -17,17 +18,14 @@ export class UpdateNoteComponent implements OnInit, OnDestroy {
 
   readonly noteTitleRequired = Message.NoteTitleRequired;
   readonly noteTitleMaxLength = Message.NoteTitleMaxLength;
-  readonly noteUpdated = Message.NoteUpdated;
 
   noteForm: FormGroup;
-  isNoteUpdated = false;
-  isError = false;
   isUpdateBtnDisable = false;
-  errorMessage?: String;
 
   constructor(private formBuilder: FormBuilder, private noteService: NoteService, private activateRoute: ActivatedRoute,
-    private route: Router) {
+    private route: Router, private toastService: ToastService) {
     this.noteForm = this.formBuilder.group({
+      id: [],
       title: ['', [Validators.required, Validators.maxLength(255)]],
       description: ['']
     });
@@ -44,7 +42,29 @@ export class UpdateNoteComponent implements OnInit, OnDestroy {
   }
 
   update() {
+    if (this.noteForm.invalid) {
+      this.noteForm.markAllAsTouched();
+      this.noteForm.markAsDirty();
+      return;
+    }
 
+    this.isUpdateBtnDisable = true;
+    this.noteService.update(this.noteForm.value)
+      .subscribe(
+        () => {
+          this.toastService.showSuccessToast(Message.NoteUpdated);
+          this.isUpdateBtnDisable = false;
+          this.route.navigate([RoutePath.Home]);
+        },
+        error => {
+          if (error.status == 0) {
+            this.toastService.showErrorToast(Message.ServerDown);
+          } else {
+            this.toastService.showErrorToast(error.error.message);
+          }
+          this.isUpdateBtnDisable = false;
+        }
+      );
   }
 
   getById(id: number) {
@@ -52,20 +72,18 @@ export class UpdateNoteComponent implements OnInit, OnDestroy {
       .subscribe(
         note => {
           this.noteForm.patchValue({
+            id: note.id,
             title: note.title,
             description: note.description
           })
         },
         error => {
           if (error.status == 0) {
-            this.errorMessage = Message.ServerDown;
+            this.toastService.showErrorToast(Message.ServerDown);
           } else {
-            this.errorMessage = error.error.message;
+            this.toastService.showErrorToast(error.error.message);
           }
-          this.isError = true;
-          setTimeout(() => {
-            this.route.navigate([RoutePath.Home])
-          }, 5000)
+          this.route.navigate([RoutePath.Home]);
         }
       )
   }
