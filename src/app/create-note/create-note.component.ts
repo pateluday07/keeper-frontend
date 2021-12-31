@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Message } from '../enum/message';
+import { RoutePath } from '../enum/route-path';
 import { NoteService } from '../service/note.service';
 import { ToastService } from '../toast/toast-service';
 
@@ -17,7 +19,8 @@ export class CreateNoteComponent implements OnInit {
   noteForm: FormGroup;
   isSaveBtnDisable = false;
 
-  constructor(private formBuilder: FormBuilder, private noteService: NoteService, private toastService: ToastService) {
+  constructor(private formBuilder: FormBuilder, private noteService: NoteService, private toastService: ToastService,
+    private route: Router) {
     this.noteForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.maxLength(255)]],
       description: ['']
@@ -41,6 +44,7 @@ export class CreateNoteComponent implements OnInit {
           this.noteForm.reset();
           this.toastService.showSuccessToast(Message.NoteSaved);
           this.isSaveBtnDisable = false;
+          this.route.navigate([RoutePath.Home]);
         },
         error => {
           if (error.status == 0) {
