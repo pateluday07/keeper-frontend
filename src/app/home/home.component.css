@@ -1,0 +1,49 @@
+#takeANoteContainer {
+    margin-top: 35px;
+}
+
+#takeANoteInput {
+    width: 50%;
+}
+
+#noteContainer {
+    margin-top: 50px;
+    padding: 0px;
+}
+
+#noteToDisplay {
+    max-width: 23%;
+    width: 23%;
+    margin: 10px;
+    height: min-content;
+    min-height: min-content;
+}
+
+#noteToDisplay:hover, #noteToDisplay:focus, #noteToDisplay:active {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+}
+
+#noteTextToDisplay {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+#noteTitle {
+    width: 190px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+}
+
+#deleteIcon:hover {
+    color: #ff0000;
+    cursor: pointer;
+}
+
+#noteTitle:hover, #noteBody:hover {
+    cursor: pointer;
+}
