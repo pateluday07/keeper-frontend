@@ -10,7 +10,7 @@ import { CreateNoteComponent } from './create-note/create-note.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateNoteComponent } from './update-note/update-note.component';
 import { ToastsContainer } from './toast/toast-container.component';
-import { AutoFocusDirective } from './auto-focus.directive';
+import { AutoFocusDirective } from './directive/auto-focus.directive';
 
 @NgModule({
   declarations: [
