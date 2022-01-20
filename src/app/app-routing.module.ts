@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateNoteComponent } from './create-note/create-note.component';
+import { RouteGuard } from './guard/route.guard';
 import { HomeComponent } from './home/home.component';
 import { UpdateNoteComponent } from './update-note/update-note.component';
 
@@ -8,7 +9,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'create-note', component: CreateNoteComponent },
-  { path: 'update-note/:id', component: UpdateNoteComponent },
+  { path: 'update-note/:id', component: UpdateNoteComponent, canActivate: [RouteGuard] },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

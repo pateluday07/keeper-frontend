@@ -1,3 +1,4 @@
 export enum ApiPaths {
-    Notes = "/notes/"
+    Notes = "/notes/",
+    NoteExists = "/exists"
 }

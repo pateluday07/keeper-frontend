@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiPaths } from '../enum/api-path';
 import { Note } from '../model/note.model';
@@ -33,5 +33,15 @@ export class NoteService {
 
   deleteById(id: number) {
     return this.http.delete(this.url + id)
+  }
+
+  async isExistsById(id: number): Promise<boolean> {
+    //let mUrl = `http://localhost:8080/api/notes/${id}/exists`;
+    let isExists = false;
+    await this.http.get(this.url + id + ApiPaths.NoteExists)
+      .toPromise()
+      .then(() => isExists = true)
+      .catch(() => isExists = false)
+    return isExists;
   }
 }
