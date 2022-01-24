@@ -1,7 +1,7 @@
 <div class="container">
     <form [formGroup]="noteForm" (ngSubmit)="update()">
         <div class="form-group shadow regular">
-            <input type="text" class="form-control" formControlName="title" placeholder="Title" autofocus>
+            <input type="text" class="form-control" formControlName="title" placeholder="Title" appAutoFocus>
             <div
                 *ngIf="(noteForm.controls.title.invalid && (noteForm.controls.title.dirty || noteForm.controls.title.touched))">
                 <div *ngIf="noteForm.controls.title.errors?.['required']" class="alert alert-danger" role="alert">

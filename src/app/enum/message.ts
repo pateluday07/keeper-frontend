@@ -1,6 +1,7 @@
 export enum Message {
     //error messages
     ServerDown = "Seems like server is down at this moment, please try again after sometime!",
+    NoteNotFound = "Note is unavailable for the id: ",
 
     //validation messages
     NoteTitleRequired = "Title is required!",
