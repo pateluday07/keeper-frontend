@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateNoteComponent } from './update-note/update-note.component';
 import { ToastsContainer } from './toast/toast-container.component';
 import { AutoFocusDirective } from './directive/auto-focus.directive';
+import { routeToUpdateCompReducer } from './store/reducers/route-to-update-comp.reducers';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { AutoFocusDirective } from './directive/auto-focus.directive';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({ isRouteToUpdateCompState: routeToUpdateCompReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]
