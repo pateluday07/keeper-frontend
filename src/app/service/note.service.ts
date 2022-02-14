@@ -35,13 +35,8 @@ export class NoteService {
     return this.http.delete(this.url + id)
   }
 
-  async isExistsById(id: number): Promise<boolean> {
+  isExistsById(id: number): Promise<any> {
     //let mUrl = `http://localhost:8080/api/notes/${id}/exists`;
-    let isExists = false;
-    await this.http.get(this.url + id + ApiPaths.NoteExists)
-      .toPromise()
-      .then(() => isExists = true)
-      .catch(() => isExists = false)
-    return isExists;
+    return this.http.get(this.url + id + ApiPaths.NoteExists).toPromise();
   }
 }
