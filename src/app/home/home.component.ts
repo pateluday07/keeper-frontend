@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { RoutePath } from '../enum/route-path';
 import { Message } from '../enum/message';
 import { ToastService } from '../toast/toast-service';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../store/selectors/route-to-update-comp.selectors';
+import { routeToUpdateCompTrue } from '../store/actions/route-to-update-comp.actions';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +19,8 @@ export class HomeComponent implements OnInit {
 
   notes: Note[] = [];
 
-  constructor(private noteService: NoteService, private router: Router, private toastService: ToastService) { }
+  constructor(private noteService: NoteService, private router: Router, private toastService: ToastService,
+    private store: Store<fromRoot.AppState>) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -38,6 +42,7 @@ export class HomeComponent implements OnInit {
   }
 
   routeToUpdateNote(id: number) {
+    this.store.dispatch(routeToUpdateCompTrue());
     this.router.navigate([RoutePath.UpdateNote + id]);
   }
 
